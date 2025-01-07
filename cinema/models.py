@@ -40,7 +40,9 @@ class Actor(models.Model):
 
 
 def create_custom_path(instance, filename):
-    filename = (f"{slugify(instance.title)}-{uuid.uuid4()}"
+    ext = pathlib.Path(filename).suffix
+
+    filename = (f"{slugify(instance.title)}-{uuid}{ext}"
                 + pathlib.Path(filename).suffix)
     return pathlib.Path("upload-image", filename)
 
